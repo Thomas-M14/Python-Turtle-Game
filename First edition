@@ -1,0 +1,616 @@
+import turtle
+import random
+import time
+
+delay = 0.000001
+
+#velocidad de los puntos
+vel = 2
+vel2 = 2
+
+#Puntos
+azul = 0
+rojo = 0
+#crear pantalla
+wn = turtle.Screen()
+wn.title("Juego de Persecución")
+wn.bgcolor("black")
+wn.setup(width=600, height=600)
+wn.tracer(0)
+
+#poner titulo
+titulo = turtle.Turtle()
+titulo.speed(0)
+titulo.shape("square")
+titulo.color("white")
+titulo.penup()
+titulo.hideturtle()
+titulo.goto(0, 275)
+titulo.write("Juego de Persecución", align="center", font=("Courier", 20, "normal"))
+titulo.goto(0, 260)
+titulo.write("De: Thomas Marthi", align="center", font=("Courier", 12, "normal"))
+
+
+
+#crear al punto 1
+punto = turtle.Turtle()
+punto.speed(0)
+punto.shape("circle")
+punto.color("red")
+punto.penup()
+punto.goto(-275,0)
+punto.direction = "Stop"
+
+#crear al punto 2
+punto2 = turtle.Turtle()
+punto2.speed(0)
+punto2.shape("circle")
+punto2.color("blue")
+punto2.penup()
+punto2.goto(275,0)
+punto2.direction = "Stop"
+
+#crear obstaculos
+
+
+#puntuacion
+puntos = turtle.Turtle()
+puntos.clear()
+puntos.speed(0)
+puntos.shape("square")
+puntos.color("white")
+puntos.penup()
+puntos.hideturtle()
+
+# definir los movimientos del punto 1 
+def goup():
+    punto.direction = "up"
+def godown():
+    punto.direction = "down"
+def goright():
+    punto.direction = "right"
+def goleft():
+    punto.direction = "left"
+def moverse():
+    if punto.direction == "up":
+        y=punto.ycor()
+        punto.sety(y+vel)
+    if punto.direction == "down":
+        y=punto.ycor()
+        punto.sety(y-vel)
+    if punto.direction == "right":
+        x=punto.xcor()
+        punto.setx(x+vel)
+    if punto.direction == "left":
+        x=punto.xcor()
+        punto.setx(x-vel)
+
+# definir los movimientos del punto 2
+def goup2():
+    punto2.direction = "up"
+def godown2():
+    punto2.direction = "down"
+def goright2():
+    punto2.direction = "right"
+def goleft2():
+    punto2.direction = "left"
+def moverse2():
+    if punto2.direction == "up":
+        y=punto2.ycor()
+        punto2.sety(y+vel2)
+    if punto2.direction == "down":
+        y=punto2.ycor()
+        punto2.sety(y-vel2)
+    if punto2.direction == "right":
+        x=punto2.xcor()
+        punto2.setx(x+vel2)
+    if punto2.direction == "left":
+        x=punto2.xcor()
+        punto2.setx(x-vel2)
+
+#configuracion del teclado del punto 1   
+wn.listen()
+wn.onkeypress(goup, "w")
+wn.onkeypress(goright, "d")
+wn.onkeypress(godown, "s")
+wn.onkeypress(goleft, "a")
+
+#configuracion del teclado del punto 2
+wn.listen()
+wn.onkeypress(goup2, "Up")
+wn.onkeypress(goright2, "Right")
+wn.onkeypress(godown2, "Down")
+wn.onkeypress(goleft2, "Left")
+
+obstaculo = turtle.Turtle()
+obstaculo.speed(0)
+obstaculo.shape("square")
+obstaculo.color(random.choice(["yellow","green","lightblue"]))
+obstaculo.penup()
+x = random.randint(-240, 240)
+y = random.randint(-240, 240)
+obstaculo.goto(x,y)
+obstaculo.turtlesize(2.5)
+
+
+obstaculo1 = turtle.Turtle()
+obstaculo1.speed(0)
+obstaculo1.shape("square")
+obstaculo1.color(random.choice(["yellow","green","lightblue"]))
+obstaculo1.penup()
+x = random.randint(-240, 240)
+y = random.randint(-240, 240)
+obstaculo1.goto(x,y)
+obstaculo1.turtlesize(2.5)
+
+
+obstaculo2 = turtle.Turtle()
+obstaculo2.speed(0)
+obstaculo2.shape("square")
+obstaculo2.color(random.choice(["yellow","green","lightblue"]))
+obstaculo2.penup()
+x = random.randint(-240, 240)
+y = random.randint(-240, 240)
+obstaculo2.goto(x,y)
+obstaculo2.turtlesize(2.5)
+
+
+obstaculo3 = turtle.Turtle()
+obstaculo3.speed(0)
+obstaculo3.shape("square")
+obstaculo3.color(random.choice(["yellow","green","lightblue"]))
+obstaculo3.penup()
+x = random.randint(-240, 240)
+y = random.randint(-240, 240)
+obstaculo3.goto(x,y)
+obstaculo3.turtlesize(2.5)
+
+
+obstaculo4 = turtle.Turtle()
+obstaculo4.speed(0)
+obstaculo4.shape("square")
+obstaculo4.color(random.choice(["yellow","green","lightblue"]))
+obstaculo4.penup()
+x = random.randint(-240, 240)
+y = random.randint(-240, 240)
+obstaculo4.goto(x,y)
+obstaculo4.turtlesize(2.5)
+
+
+obstaculo5 = turtle.Turtle()
+obstaculo5.speed(0)
+obstaculo5.shape("square")
+obstaculo5.color(random.choice(["yellow","green","lightblue"]))
+obstaculo5.penup()
+x = random.randint(-240, 240)
+y = random.randint(-240, 240)
+obstaculo5.goto(x,y)
+obstaculo5.turtlesize(2.5)
+
+#correr el juego
+while True:
+    wn.update()
+    
+    
+    if punto.xcor()>287 or punto.xcor()<-287 or punto.ycor()>287 or punto.ycor()<-287:
+        time.sleep(1)
+        punto.goto(-275,0)
+        punto.direction = "stop"
+        punto2.goto(275,0)
+        punto2.direction = "stop"
+
+        obstaculo.goto(1000,1000)
+        obstaculo1.goto(1000,1000)
+        obstaculo2.goto(1000,1000)
+        obstaculo3.goto(1000,1000)
+        obstaculo4.goto(1000,1000)
+        obstaculo5.goto(1000,1000)
+        
+        obstaculo = turtle.Turtle()
+        obstaculo.speed(0)
+        obstaculo.shape("square")
+        obstaculo.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo.goto(x,y)
+        obstaculo.turtlesize(2.5)
+
+        obstaculo1 = turtle.Turtle()
+        obstaculo1.speed(0)
+        obstaculo1.shape("square")
+        obstaculo1.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo1.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo1.goto(x,y)
+        obstaculo1.turtlesize(2.5)
+
+        obstaculo2 = turtle.Turtle()
+        obstaculo2.speed(0)
+        obstaculo2.shape("square")
+        obstaculo2.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo2.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo2.goto(x,y)
+        obstaculo2.turtlesize(2.5)
+
+        obstaculo3 = turtle.Turtle()
+        obstaculo3.speed(0)
+        obstaculo3.shape("square")
+        obstaculo3.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo3.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo3.goto(x,y)
+        obstaculo3.turtlesize(2.5)
+
+        obstaculo4 = turtle.Turtle()
+        obstaculo4.speed(0)
+        obstaculo4.shape("square")
+        obstaculo4.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo4.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo4.goto(x,y)
+        obstaculo4.turtlesize(2.5)
+
+        obstaculo5 = turtle.Turtle()
+        obstaculo5.speed(0)
+        obstaculo5.shape("square")
+        obstaculo5.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo5.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo5.goto(x,y)
+        obstaculo5.turtlesize(2.5)
+        azul += 1
+        puntos.clear()
+        puntos.goto(0, 275)
+        puntos.write("ROJO: {}                                      AZUL: {}".format(rojo,azul), align="center", font=("Courier", 12, "normal"))
+
+        delay = 0.000001
+        print("GANO EL AZUL")
+        
+        
+    if punto2.xcor()>287 or punto2.xcor()<-287 or punto2.ycor()>287 or punto2.ycor()<-287:
+        time.sleep(1)
+        punto2.goto(275,0)
+        punto2.direction = "stop"
+        punto.goto(-275,0)
+        punto.direction = "stop"
+
+        obstaculo.goto(1000,1000)
+        obstaculo1.goto(1000,1000)
+        obstaculo2.goto(1000,1000)
+        obstaculo3.goto(1000,1000)
+        obstaculo4.goto(1000,1000)
+        obstaculo5.goto(1000,1000)
+        
+        obstaculo = turtle.Turtle()
+        obstaculo.speed(0)
+        obstaculo.shape("square")
+        obstaculo.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo.goto(x,y)
+        obstaculo.turtlesize(2.5)
+
+        obstaculo1 = turtle.Turtle()
+        obstaculo1.speed(0)
+        obstaculo1.shape("square")
+        obstaculo1.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo1.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo1.goto(x,y)
+        obstaculo1.turtlesize(2.5)
+
+        obstaculo2 = turtle.Turtle()
+        obstaculo2.speed(0)
+        obstaculo2.shape("square")
+        obstaculo2.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo2.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo2.goto(x,y)
+        obstaculo2.turtlesize(2.5)
+
+        obstaculo3 = turtle.Turtle()
+        obstaculo3.speed(0)
+        obstaculo3.shape("square")
+        obstaculo3.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo3.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo3.goto(x,y)
+        obstaculo3.turtlesize(2.5)
+
+        obstaculo4 = turtle.Turtle()
+        obstaculo4.speed(0)
+        obstaculo4.shape("square")
+        obstaculo4.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo4.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo4.goto(x,y)
+        obstaculo4.turtlesize(2.5)
+
+        obstaculo5 = turtle.Turtle()
+        obstaculo5.speed(0)
+        obstaculo5.shape("square")
+        obstaculo5.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo5.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo5.goto(x,y)
+        obstaculo5.turtlesize(2.5)
+
+        rojo += 1
+        puntos.clear()
+        puntos.goto(0, 275)
+        puntos.write("ROJO: {}                                      AZUL: {}".format(rojo,azul), align="center", font=("Courier", 12, "normal"))
+
+        delay = 0.000001
+        print("GANO EL ROJO")
+
+
+    if  punto.distance(obstaculo) < 35 or  punto.distance(obstaculo1) < 35 or punto.distance(obstaculo1) < 35 or punto.distance(obstaculo2) < 35 or punto.distance(obstaculo3) < 35 or punto.distance(obstaculo4) < 35 or punto.distance(obstaculo5) < 35:
+        time.sleep(1)
+        punto.goto(-275,0)
+        punto.direction = "stop"
+        punto2.goto(275,0)
+        punto2.direction = "stop"
+
+        obstaculo.goto(1000,1000)
+        obstaculo1.goto(1000,1000)
+        obstaculo2.goto(1000,1000)
+        obstaculo3.goto(1000,1000)
+        obstaculo4.goto(1000,1000)
+        obstaculo5.goto(1000,1000)
+        
+        obstaculo = turtle.Turtle()
+        obstaculo.speed(0)
+        obstaculo.shape("square")
+        obstaculo.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo.goto(x,y)
+        obstaculo.turtlesize(2.5)
+
+        obstaculo1 = turtle.Turtle()
+        obstaculo1.speed(0)
+        obstaculo1.shape("square")
+        obstaculo1.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo1.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo1.goto(x,y)
+        obstaculo1.turtlesize(2.5)
+
+        obstaculo2 = turtle.Turtle()
+        obstaculo2.speed(0)
+        obstaculo2.shape("square")
+        obstaculo2.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo2.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo2.goto(x,y)
+        obstaculo2.turtlesize(2.5)
+
+        obstaculo3 = turtle.Turtle()
+        obstaculo3.speed(0)
+        obstaculo3.shape("square")
+        obstaculo3.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo3.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo3.goto(x,y)
+        obstaculo3.turtlesize(2.5)
+
+        obstaculo4 = turtle.Turtle()
+        obstaculo4.speed(0)
+        obstaculo4.shape("square")
+        obstaculo4.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo4.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo4.goto(x,y)
+        obstaculo4.turtlesize(2.5)
+
+        obstaculo5 = turtle.Turtle()
+        obstaculo5.speed(0)
+        obstaculo5.shape("square")
+        obstaculo5.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo5.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo5.goto(x,y)
+        obstaculo5.turtlesize(2.5)
+
+        azul += 1
+        puntos.clear()
+        puntos.goto(0, 275)
+        puntos.write("ROJO: {}                                      AZUL: {}".format(rojo,azul), align="center", font=("Courier", 12, "normal"))
+
+        delay = 0.000001
+        print("GANO EL AZUL")
+
+        
+    if  punto2.distance(obstaculo) < 35 or  punto2.distance(obstaculo1) < 35 or punto2.distance(obstaculo1) < 35 or punto2.distance(obstaculo2) < 35 or punto2.distance(obstaculo3) < 35 or punto2.distance(obstaculo4) < 35 or punto2.distance(obstaculo5) < 35:
+        time.sleep(1)
+        punto2.goto(275,0)
+        punto2.direction = "stop"
+        punto.goto(-275,0)
+        punto.direction = "stop"
+
+        obstaculo.goto(1000,1000)
+        obstaculo1.goto(1000,1000)
+        obstaculo2.goto(1000,1000)
+        obstaculo3.goto(1000,1000)
+        obstaculo4.goto(1000,1000)
+        obstaculo5.goto(1000,1000)
+        
+        obstaculo = turtle.Turtle()
+        obstaculo.speed(0)
+        obstaculo.shape("square")
+        obstaculo.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo.goto(x,y)
+        obstaculo.turtlesize(2.5)
+
+        obstaculo1 = turtle.Turtle()
+        obstaculo1.speed(0)
+        obstaculo1.shape("square")
+        obstaculo1.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo1.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo1.goto(x,y)
+        obstaculo1.turtlesize(2.5)
+
+        obstaculo2 = turtle.Turtle()
+        obstaculo2.speed(0)
+        obstaculo2.shape("square")
+        obstaculo2.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo2.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo2.goto(x,y)
+        obstaculo2.turtlesize(2.5)
+
+        obstaculo3 = turtle.Turtle()
+        obstaculo3.speed(0)
+        obstaculo3.shape("square")
+        obstaculo3.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo3.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo3.goto(x,y)
+        obstaculo3.turtlesize(2.5)
+
+        obstaculo4 = turtle.Turtle()
+        obstaculo4.speed(0)
+        obstaculo4.shape("square")
+        obstaculo4.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo4.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo4.goto(x,y)
+        obstaculo4.turtlesize(2.5)
+
+        obstaculo5 = turtle.Turtle()
+        obstaculo5.speed(0)
+        obstaculo5.shape("square")
+        obstaculo5.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo5.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo5.goto(x,y)
+        obstaculo5.turtlesize(2.5)
+
+        rojo += 1
+        puntos.clear()
+        puntos.goto(0, 275)
+        puntos.write("ROJO: {}                                      AZUL: {}".format(rojo,azul), align="center", font=("Courier", 12, "normal"))
+        
+        delay = 0.000001
+        print("GANO EL ROJO")
+
+        
+    if punto.distance(punto2) < 20:
+        time.sleep(1)
+        punto2.goto(275,0)
+        punto2.direction = "stop"
+        punto.goto(-275,0)
+        punto.direction = "stop"
+
+        obstaculo.goto(1000,1000)
+        obstaculo1.goto(1000,1000)
+        obstaculo2.goto(1000,1000)
+        obstaculo3.goto(1000,1000)
+        obstaculo4.goto(1000,1000)
+        obstaculo5.goto(1000,1000)
+        
+        obstaculo = turtle.Turtle()
+        obstaculo.speed(0)
+        obstaculo.shape("square")
+        obstaculo.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo.goto(x,y)
+        obstaculo.turtlesize(2.5)
+
+        obstaculo1 = turtle.Turtle()
+        obstaculo1.speed(0)
+        obstaculo1.shape("square")
+        obstaculo1.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo1.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo1.goto(x,y)
+        obstaculo1.turtlesize(2.5)
+
+        obstaculo2 = turtle.Turtle()
+        obstaculo2.speed(0)
+        obstaculo2.shape("square")
+        obstaculo2.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo2.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo2.goto(x,y)
+        obstaculo2.turtlesize(2.5)
+
+        obstaculo3 = turtle.Turtle()
+        obstaculo3.speed(0)
+        obstaculo3.shape("square")
+        obstaculo3.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo3.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo3.goto(x,y)
+        obstaculo3.turtlesize(2.5)
+
+        obstaculo4 = turtle.Turtle()
+        obstaculo4.speed(0)
+        obstaculo4.shape("square")
+        obstaculo4.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo4.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo4.goto(x,y)
+        obstaculo4.turtlesize(2.5)
+
+        obstaculo5 = turtle.Turtle()
+        obstaculo5.speed(0)
+        obstaculo5.shape("square")
+        obstaculo5.color(random.choice(["yellow","green","lightblue"]))
+        obstaculo5.penup()
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        obstaculo5.goto(x,y)
+        obstaculo5.turtlesize(2.5)
+
+        rojo += 1
+        puntos.clear()
+        puntos.goto(0, 275)
+        puntos.write("ROJO: {}                                      AZUL: {}".format(rojo,azul), align="center", font=("Courier", 12, "normal"))
+        
+        delay = 0.000001
+        print("GANO EL ROJO")
+
+       
+ 
+
+    moverse2()
+    moverse()
+    time.sleep(delay)
+
+        
+wn.mainloop()
