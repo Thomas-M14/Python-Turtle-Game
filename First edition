@@ -52,7 +52,6 @@ punto2.direction = "Stop"
 
 #crear obstaculos
 
-
 #puntuacion
 puntos = turtle.Turtle()
 puntos.clear()
